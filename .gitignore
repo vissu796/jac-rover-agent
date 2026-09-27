@@ -1,0 +1,17 @@
+.jac/
+node_modules/
+.vscode/
+.idea/
+
+# Secrets - never commit
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+
+# Captured frames are run evidence, not source
+.jac/frames/
+__pycache__/
+*.pyc
+.DS_Store

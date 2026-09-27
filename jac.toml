@@ -1,0 +1,48 @@
+[project]
+name = "pi-agent"
+version = "0.1.0"
+description = "Interactive Jac-native lost-and-found rover agent"
+entry-point = "main"
+kind = "web-app"
+jac-version = "==0.37.23"
+
+[dependencies]
+[dependencies.npm]
+react = "^19.2.0"
+react-dom = "^19.2.0"
+react-router-dom = "^6.22.0"
+react-error-boundary = "^5.0.0"
+"@tanstack/react-form" = "^1.33.0"
+zod = "^4.3.6"
+
+[dependencies.npm.dev]
+vite = "^6.4.1"
+"@vitejs/plugin-react" = "^4.7.0"
+typescript = "^5.3.3"
+"@types/react" = "^19.2.0"
+"@types/react-dom" = "^19.2.0"
+[dev-dependencies]
+watchdog = ">=3.0.0"
+
+[serve]
+port = 8000
+
+[test]
+directory = "tests"
+verbose = true
+
+[client.app_meta_data]
+title = "Rover Lost & Found"
+description = "A conversational Jac agent for safe, bounded rover searches"
+theme_color = "#11100e"
+
+[byllm.model]
+# Fallback only. The functions in missions/ai.jac pick their own model:
+#   `by brain(...)`  -> OPENAI_API_KEY      orchestration, chat, reports
+#   `by vision(...)` -> TOGETHER_API_KEY    frame analysis (runs ~50x more often)
+# Override either without editing code via ORCHESTRATOR_MODEL / VISION_MODEL.
+default_model = "${ORCHESTRATOR_MODEL:-gpt-4o}"
+
+[byllm.call_params]
+temperature = 0.2
+max_tokens = 1200
